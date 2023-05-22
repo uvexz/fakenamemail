@@ -1,0 +1,96 @@
+//mailsac api
+function getEmailContent() {
+			var email = document.getElementById("email").value.trim();
+			var emailUrl = document.getElementById("emailUrl").value.trim();
+			if (email == "") {
+				alert("请输入邮箱地址！");
+				return;
+			}
+			var url = "https://mali.my.to/api/addresses/" + email + emailUrl + "/messages";
+			var apiKey = "";
+			$.ajax({
+				url: url,
+				headers: {
+					"Mailsac-Key": apiKey
+				},
+				success: function(data) {
+					if (data.length == 0) {
+						alert("该邮箱中没有邮件！");
+						return;
+					}
+					var mails = [];
+					for (var i = 0; i < data.length; i++) {
+						var mail = {
+							"id": data[i]._id,
+							"subject": data[i].subject,
+							"from": data[i].from
+						};
+						mails.push(mail);
+					}
+					for (var i = 0; i < mails.length; i++) {
+						var id = mails[i].id;
+						var subject = mails[i].subject;
+						var from = mails[i].from[0].address;
+						var mailUrl = "https://mali.my.to/api/text/" + email + emailUrl + "/" + id;
+						var dirtyUrl = "https://mailsac.com/api/dirty/" + email + emailUrl + "/" + id;
+						$.ajax({
+							url: mailUrl,
+							headers: {
+								"Mailsac-Key": apiKey
+							},
+							async: false,
+							success: function(data) {
+								const dataWithLinks = data.replace(/(https?:\/\/[\w-]+(\.[\w-]+)+([^\s,;()\[\]]+)?)/g, '<a href="$1" target="_blank">$1</a>');
+								$("#content").append("<div class='card'><div class='card-body'><h5 class='card-title'><span class='badge badge-secondary'>" + (i + 1) + "</span> <a href='" + dirtyUrl + "' target='_blank'>" + subject + "</a></h5><h6 class='card-subtitle mb-2 text-muted'>From: " + from + "</h6><p class='card-text'>" + dataWithLinks + "</p></div></div>");
+							}
+						});
+					}
+				}
+			});
+		}
+
+// random name
+
+function generateRandomName() {
+  const surnames = ['Smith', 'Johnson', 'Brown', 'Davis', 'Miller', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'White', 'Harris', 'Martin', 'Thompson', 'Garcia', 'Martinez', 'Jones', 'Gonzalez', 'Rodriguez', 'Lee', 'Walker', 'Hall', 'Allen', 'Young', 'King', 'Wright', 'Scott', 'Green', 'Baker', 'Adams', 'Nelson', 'Carter', 'Mitchell', 'Perez', 'Roberts', 'Turner', 'Phillips', 'Campbell', 'Parker', 'Evans', 'Edwards', 'Collins', 'Stewart', 'Sanchez', 'Morris', 'Rogers', 'Reed', 'Cook', 'Morgan', 'Cooper', 'Peterson'];
+  const names = ['Emma', 'Olivia', 'Ava', 'Isabella', 'Sophia', 'Charlotte', 'Mia', 'Amelia', 'Harper', 'Evelyn', 'Abigail', 'Emily', 'Elizabeth', 'Mila', 'Ella', 'Avery', 'Sofia', 'Camila', 'Aria', 'Scarlett', 'Victoria', 'Madison', 'Luna', 'Grace', 'Chloe', 'Penelope', 'Layla', 'Riley', 'Zoey', 'Nora', 'Lily', 'Eleanor', 'Hannah', 'Lillian', 'Addison', 'Aubrey', 'Ellie', 'Stella', 'Natalie', 'Zoe', 'Leah', 'Hazel', 'Violet', 'Aurora', 'Savannah', 'Audrey', 'Brooklyn', 'Bella', 'Claire', 'Skylar'];
+
+  const randomSurnameIndex = Math.floor(Math.random() * surnames.length);
+  const randomNameIndex = Math.floor(Math.random() * names.length);
+  const randomSurname = surnames[randomSurnameIndex];
+  const randomName = names[randomNameIndex];
+
+  const emailInput = document.getElementById('email');
+  emailInput.value = `${randomName.toLowerCase()}.${randomSurname.toLowerCase()}`;
+}
+
+generateRandomName();
+
+// fake name api
+
+const nameInput = document.getElementById("name");
+      const addressInput = document.getElementById("address");
+      const usernameInput = document.getElementById("username");
+      const passwordInput = document.getElementById("password");
+      const emailInput = document.getElementById("email");
+      const refreshButton = document.getElementById("refresh");
+
+      function fillFormWithData(data) {
+        nameInput.value = data.name;
+        addressInput.value = data.address;
+        usernameInput.value = data.username;
+        passwordInput.value = data.password;
+        emailInput.value = data.email_u;
+      }
+
+      function refreshData() {
+        fetch('https://mails.dns.navy/nameapi')
+          .then(response => response.json())
+          .then(data => fillFormWithData(data))
+          .catch(error => console.error(error));
+      }
+
+      refreshButton.addEventListener('click', refreshData);
+
+      // fill the form with data on page load
+      refreshData();
