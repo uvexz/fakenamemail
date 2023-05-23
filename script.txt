@@ -68,29 +68,37 @@ generateRandomName();
 
 // fake name api
 
-const nameInput = document.getElementById("name");
-      const addressInput = document.getElementById("address");
-      const usernameInput = document.getElementById("username");
-      const passwordInput = document.getElementById("password");
-      const emailInput = document.getElementById("email");
-      const refreshButton = document.getElementById("refresh");
+$(document).ready(function() {
+			// 从 https://namemail.app/zh-cn/nameapi 获取 JSON 数据
+			$.getJSON("/zh-cn/nameapi", function(data) {
+				// 将获取到的数据填入对应的输入框中
+				$("#name").val(data.name);
+				$("#username").val(data.username);
+				$("#email").val(data.username);
+				$("#phone").val(data.phone_h);
+				$("#password").val(data.password);
+			});
 
-      function fillFormWithData(data) {
-        nameInput.value = data.name;
-        addressInput.value = data.address;
-        usernameInput.value = data.username;
-        passwordInput.value = data.password;
-        emailInput.value = data.email_u;
-      }
+			// 从 https://namemail.app/zh-cn/addrapi 获取 JSON 数据
+			$.getJSON("/zh-cn/addrapi", function(data) {
+				// 将获取到的数据填入对应的输入框中
+				$("#address").val(data.region);
+				$("#postcode").val(data.code);
+			});
 
-      function refreshData() {
-        fetch('https://mails.dns.navy/nameapi')
-          .then(response => response.json())
-          .then(data => fillFormWithData(data))
-          .catch(error => console.error(error));
-      }
-
-      refreshButton.addEventListener('click', refreshData);
-
-      // fill the form with data on page load
-      refreshData();
+			// 给刷新按钮添加点击事件
+			$("#refresh").click(function() {
+				// 重新获取数据并填入对应的输入框中
+				$.getJSON("/zh-cn/nameapi", function(data) {
+					$("#name").val(data.name);
+					$("#username").val(data.username);
+					$("#email").val(data.username);
+					$("#phone").val(data.phone_h);
+					$("#password").val(data.password);
+				});
+				$.getJSON("/zh-cn/addrapi", function(data) {
+					$("#address").val(data.region);
+					$("#postcode").val(data.code);
+				});
+			});
+		});

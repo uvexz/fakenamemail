@@ -36,7 +36,7 @@
 	        <div class="col-md-12">
 	            <div class="d-flex justify-content-between align-items-center breaking-news bg-white">
 	                <div class="d-flex flex-row flex-grow-1 flex-fill justify-content-center bg-light py-2 px-1 news text-secondary"><span class="d-flex align-items-center">公告</span></div>
-	                <marquee class="news-scroll text-secondary" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><span class="dot"></span>本站是一个隐私保护装置，装载了随机姓名生成器及临时邮箱。 <span class="dot"></span>随机姓名生成器 API 由 namefake.com 提供。 <span class="dot"></span>临时邮箱 API 由 mailsac.com 提供。 <span class="dot"></span>点击“接收邮件”后需要几秒钟的时间获取邮件，<b>请不要重复点击</b>。 <span class="dot"></span>若邮件中的链接缺失，请<b>点击邮件标题</b>查看原始邮件。 <span class="dot"></span>After clicking "Receive Email" it takes a few seconds to retrieve the email, so please do not click repeatedly. If the link is missing from the email, please click the email title to view the original email.
+	                <marquee class="news-scroll text-secondary" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><span class="dot"></span>本站是一个隐私保护装置，装载了随机姓名生成器及临时邮箱。 <span class="dot"></span>随机姓名生成器 API 由 namefake.com 提供。 <span class="dot"></span>临时邮箱 API 由 mailsac.com 提供。 <span class="dot"></span>点击“接收邮件”后需要几秒钟的时间获取邮件，<b>请不要重复点击</b>。 <span class="dot"></span>若邮件中的链接缺失，请<b>点击邮件标题</b>查看原始邮件（需登陆 Mailsac.com）。 
 	                </marquee>
 	            </div>
 	        </div>
@@ -45,7 +45,7 @@
 		<form>
 			<div class="row">
 		    	<div class="col">
-		    		<label for="name">姓名 Name</label>
+		    		<label for="name">姓名</label>
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="name">
 						<div class="input-group-append">
@@ -54,7 +54,18 @@
 					</div>
 				</div>
 				<div class="col">
-					<label for="address">地址 Addr.</label>
+					<label for="phone">电话</label>
+		    		<div class="input-group">
+						<input type="text" class="form-control" id="phone">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#phone">📋</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<label for="address">地址</label>
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="address">
 						<div class="input-group-append">
@@ -62,10 +73,19 @@
 						</div>
 					</div>
 				</div>
+				<div class="col">
+		    		<label for="postcode">邮编</label>
+		    		<div class="input-group">
+						<input type="text" class="form-control" id="postcode">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#postcode">📋</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 		    	<div class="col">
-		    		<label for="username">用户名 Username</label>
+		    		<label for="username">用户名</label>
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="username">
 						<div class="input-group-append">
@@ -74,7 +94,7 @@
 					</div>
 				</div>
 				<div class="col">
-					<label for="password">密码 Password</label>
+					<label for="password">密码</label>
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="password">
 						<div class="input-group-append">
@@ -86,13 +106,13 @@
 			<div class="row">
 		    	<div class="col">
 					<div class="form-group">
-						<label for="email">邮箱前缀 Email Prefix</label>
+						<label for="email">邮箱前缀</label>
 						<input class="form-control" id="email" placeholder="请输入邮箱前缀">
 		  			</div>
 		  		</div>
 		  		<div class="col">
 					<div class="form-group">
-						<label for="emailUrl">邮箱后缀 Email Suffix</label>
+						<label for="emailUrl">邮箱后缀</label>
 						<select class="form-control" id="emailUrl">
 							<optgroup label="namemail.app">
 								<option value="@mail.namemail.app">@mail.namemail.app</option>
@@ -119,10 +139,10 @@
 		    		</div>
 				</div>
 			</div>
-			<div class="btn-group-vertical btn-block" role="group">
-				<button type="button" class="btn btn-light" id="refresh">🔄 重新生成 Regeneration</button>
-				<button type="button" class="btn btn-secondary" onclick="copyToClipboard()">📋 复制邮箱 Copy Mailbox</button>
-				<button type="button" class="btn btn-dark" onclick="getEmailContent()">📩 接收邮件 Receive Email</button>
+			<div class="btn-group btn-block" role="group">
+				<button type="button" class="btn btn-light" id="refresh">🔄 重新生成</button>
+				<button type="button" class="btn btn-secondary" onclick="copyToClipboard()">📋 复制邮箱</button>
+				<button type="button" class="btn btn-dark" onclick="getEmailContent()">📩 接收邮件</button>
 			</div>
 		</form>
 
@@ -139,8 +159,9 @@
 <script type="text/javascript">
 new ClipboardJS('.btn');
 function copyToClipboard(){var emailAll=document.getElementById('email').value+document.getElementById('emailUrl').value;var tempInput=document.createElement('input');tempInput.value=emailAll;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);alert('已复制邮箱地址：'+emailAll)}
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0 6=1.2("7");0 8=1.2("9");0 b=1.2("c");0 d=1.2("e");0 f=1.2("m");0 g=1.2("n");h i(a){6.3=a.7;8.3=a.9;b.3=a.c;d.3=a.e;f.3=a.o}h 4(){p(\'/q\').j(k=>k.r()).j(l=>i(l)).s(5=>t.5(5))}g.u(\'v\',4);4();',32,32,'const|document|getElementById|value|refreshData|error|nameInput|name|addressInput|address||usernameInput|username|passwordInput|password|emailInput|refreshButton|function|fillFormWithData|then|response|data|email|refresh|email_u|fetch|namezhcnapi|json|catch|console|addEventListener|click'.split('|'),0,{}))
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(i).j(1(){$.3("/4-5/8",1(a){$("#6").0(a.6);$("#2").0(a.2);$("#9").0(a.2);$("#b").0(a.c);$("#7").0(a.7)});$.3("/4-5/d",1(a){$("#e").0(a.f);$("#g").0(a.h)});$("#k").l(1(){$.3("/4-5/8",1(a){$("#6").0(a.6);$("#2").0(a.2);$("#9").0(a.2);$("#b").0(a.c);$("#7").0(a.7)});$.3("/4-5/d",1(a){$("#e").0(a.f);$("#g").0(a.h)})})});',22,22,'val|function|username|getJSON|zh|cn|name|password|nameapi|email||phone|phone_h|addrapi|address|region|postcode|code|document|ready|refresh|click'.split('|'),0,{}))
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('7 S(){3 k=t.u("T").v.x();3 l=t.u("U").v.x();y(k==""){z("请输入邮箱地址！");A}3 m="/8/V/"+k+l+"/W";3 n="X";$.B({C:m,D:{"E-F":n},G:7(b){y(b.9==0){z("该邮箱中没有邮件！");A}3 c=[];H(3 i=0;i<b.9;i++){3 d={"I":b[i].Y,"o":b[i].o,"q":b[i].q};c.Z(d)}H(3 i=0;i<c.9;i++){3 e=c[i].I;3 f=c[i].o;3 g=c[i].q[0].10;3 h="/8/r/"+k+l+"/"+e;3 j="J://11.12/8/13/"+k+l+"/"+e;$.B({C:h,D:{"E-F":n},14:15,G:7(a){16 K=a.17(/(J?:\\/\\/[\\w-]+(\\.[\\w-]+)+([^\\s,;()\\[\\]]+)?)/g,\'<a L="$1" M="N">$1</a>\');$("#18").19("<6 4=\'5\'><6 4=\'5-1a\'><O 4=\'5-1b\'><P 4=\'Q Q-1c\'>"+(i+1)+"</P> <a L=\'"+j+"\' M=\'N\'>"+f+"</a></O><R 4=\'5-1d 1e-2 r-1f\'>1g: "+g+"</R><p 4=\'5-r\'>"+K+"</p></6></6>")}})}}})}',62,79,'|||var|class|card|div|function|api|length|||||||||||||||subject||from|text||document|getElementById|value||trim|if|alert|return|ajax|url|headers|Mailsac|Key|success|for|id|https|dataWithLinks|href|target|_blank|h5|span|badge|h6|getEmailContent|email|emailUrl|addresses|messages|k_KjF1yZqs35BvoIxKrwvYbNW3dmCDnIgpN5n1J1gdtGQ5f21|_id|push|address|mailsac|com|dirty|async|false|const|replace|content|append|body|title|secondary|subtitle|mb|muted|From'.split('|'),0,{}))
+	</script>
 </script>
 </html>
 <script async src="https://tj.con.sh/script.js" data-website-id="41412f6a-9483-433b-82a3-b0b516a9060a"></script>
