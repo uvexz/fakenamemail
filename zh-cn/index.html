@@ -10,7 +10,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="stylesheet" href="https://cdn.sevencdn.com/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	<script type="text/javascript">if (window.location.host !== "namemail.app") {window.location.href = "https://namemail.app";}</script>
 	<style>
 		* {border-radius: 0!important;font-family: "Noto Sans SC","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Hiragino Kaku Gothic Pro",Meiryo,"Malgun Gothic",sans-serif;}
 		.btn-outline-secondary,.alert-light {border: 1px solid #ced4da;} .input-group {margin-bottom: 1rem;}
@@ -112,33 +111,40 @@
 		  		</div>
 		  		<div class="col">
 					<div class="form-group">
-						<label for="emailUrl">邮箱后缀</label>
-						<select class="form-control" id="emailUrl">
-							<optgroup label="namemail.app">
-								<option value="@mail.namemail.app">@mail.namemail.app</option>
-								<option value="@user.namemail.app">@user.namemail.app</option>
-								<option value="@com.namemail.app">@com.namemail.app</option>
-								<option value="@net.namemail.app">@net.namemail.app</option>
-								<option value="@edu.namemail.app">@edu.namemail.app</option>
-								<option value="@www.namemail.app">@www.namemail.app</option>
-							</optgroup>
-							<optgroup label="更多 More">
-								<option value="@mali.my.to">@maLi.my.to</option>
-								<option value="@mails.v6.rocks">@mails.v6.rocks</option>
-								<option value="@mails.v6.navy">@mails.v6.navy</option>
-								<option value="@mails.sytes.net">@mails.sytes.net</option>
-								<option value="@mails.serveblog.net">@mails.serveblog.net</option>
-								<option value="@mails.root.sx">@mails.root.sx</option>
-								<option value="@mails.dns.navy">@mails.dns.navy</option>
-								<option value="@mailon.rr.nu">@mailon.rr.nu</option>
-								<option value="@mailon.ddns.net">@mailon.ddns.net</option>
-								<option value="@disposable.sendsmtp.com">@disposable.sendsmtp.com</option>
-								<option value="@dismail.rr.nu">@dismail.rr.nu</option>
-							</optgroup>
-		    			</select>
+						<label for="emailUrl">邮箱后缀 Email Suffix</label>
+						<div class="input-group">
+							<select class="form-control" id="emailUrl">
+								<optgroup label="namemail.app">
+									<option value="@mail.namemail.app">@mail.namemail.app</option>
+									<option value="@user.namemail.app">@user.namemail.app</option>
+									<option value="@com.namemail.app">@com.namemail.app</option>
+									<option value="@net.namemail.app">@net.namemail.app</option>
+									<option value="@edu.namemail.app">@edu.namemail.app</option>
+									<option value="@www.namemail.app">@www.namemail.app</option>
+								</optgroup>
+								<optgroup label="更多 More">
+									<option value="@mx.ll.td">@mx.ll.td</option>
+									<option value="@mali.my.to">@maLi.my.to</option>
+									<option value="@mails.v6.rocks">@mails.v6.rocks</option>
+									<option value="@mails.v6.navy">@mails.v6.navy</option>
+									<option value="@mails.sytes.net">@mails.sytes.net</option>
+									<option value="@mails.serveblog.net">@mails.serveblog.net</option>
+									<option value="@mails.root.sx">@mails.root.sx</option>
+									<option value="@mails.dns.navy">@mails.dns.navy</option>
+									<option value="@mailon.rr.nu">@mailon.rr.nu</option>
+									<option value="@mailon.ddns.net">@mailon.ddns.net</option>
+									<option value="@disposable.sendsmtp.com">@disposable.sendsmtp.com</option>
+									<option value="@dismail.rr.nu">@dismail.rr.nu</option>
+								</optgroup>
+			    			</select>
+			    			<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button" onclick="checkMX()">Check MX</button>
+							</div>
+						</div>	
 		    		</div>
 				</div>
 			</div>
+			<div id="mxchecker"></div>
 			<div class="btn-group btn-block" role="group">
 				<button type="button" class="btn btn-light" id="refresh">🔄 重新生成</button>
 				<button type="button" class="btn btn-secondary" onclick="copyToClipboard()">📋 复制邮箱</button>
@@ -159,9 +165,12 @@
 <script type="text/javascript">
 new ClipboardJS('.btn');
 function copyToClipboard(){var emailAll=document.getElementById('email').value+document.getElementById('emailUrl').value;var tempInput=document.createElement('input');tempInput.value=emailAll;document.body.appendChild(tempInput);tempInput.select();document.execCommand('copy');document.body.removeChild(tempInput);alert('已复制邮箱地址：'+emailAll)}
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(i).j(1(){$.3("/4-5/8",1(a){$("#6").0(a.6);$("#2").0(a.2);$("#9").0(a.2);$("#b").0(a.c);$("#7").0(a.7)});$.3("/4-5/d",1(a){$("#e").0(a.f);$("#g").0(a.h)});$("#k").l(1(){$.3("/4-5/8",1(a){$("#6").0(a.6);$("#2").0(a.2);$("#9").0(a.2);$("#b").0(a.c);$("#7").0(a.7)});$.3("/4-5/d",1(a){$("#e").0(a.f);$("#g").0(a.h)})})});',22,22,'val|function|username|getJSON|zh|cn|name|password|nameapi|email||phone|phone_h|addrapi|address|region|postcode|code|document|ready|refresh|click'.split('|'),0,{}))
+//receivemail
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('7 S(){3 k=t.u("T").v.x();3 l=t.u("U").v.x();y(k==""){z("请输入邮箱地址！");A}3 m="/8/V/"+k+l+"/W";3 n="X";$.B({C:m,D:{"E-F":n},G:7(b){y(b.9==0){z("该邮箱中没有邮件！");A}3 c=[];H(3 i=0;i<b.9;i++){3 d={"I":b[i].Y,"o":b[i].o,"q":b[i].q};c.Z(d)}H(3 i=0;i<c.9;i++){3 e=c[i].I;3 f=c[i].o;3 g=c[i].q[0].10;3 h="/8/r/"+k+l+"/"+e;3 j="J://11.12/8/13/"+k+l+"/"+e;$.B({C:h,D:{"E-F":n},14:15,G:7(a){16 K=a.17(/(J?:\\/\\/[\\w-]+(\\.[\\w-]+)+([^\\s,;()\\[\\]]+)?)/g,\'<a L="$1" M="N">$1</a>\');$("#18").19("<6 4=\'5\'><6 4=\'5-1a\'><O 4=\'5-1b\'><P 4=\'Q Q-1c\'>"+(i+1)+"</P> <a L=\'"+j+"\' M=\'N\'>"+f+"</a></O><R 4=\'5-1d 1e-2 r-1f\'>1g: "+g+"</R><p 4=\'5-r\'>"+K+"</p></6></6>")}})}}})}',62,79,'|||var|class|card|div|function|api|length|||||||||||||||subject||from|text||document|getElementById|value||trim|if|alert|return|ajax|url|headers|Mailsac|Key|success|for|id|https|dataWithLinks|href|target|_blank|h5|span|badge|h6|getEmailContent|email|emailUrl|addresses|messages|k_KjF1yZqs35BvoIxKrwvYbNW3dmCDnIgpN5n1J1gdtGQ5f21|_id|push|address|mailsac|com|dirty|async|false|const|replace|content|append|body|title|secondary|subtitle|mb|muted|From'.split('|'),0,{}))
-	</script>
+//fakename
+eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('0 6=1.2("7");0 8=1.2("9");0 b=1.2("c");0 d=1.2("e");0 f=1.2("m");0 g=1.2("n");h i(a){6.3=a.7;8.3=a.9;b.3=a.c;d.3=a.e;f.3=a.o}h 4(){p(\'/q\').j(k=>k.r()).j(l=>i(l)).s(5=>t.5(5))}g.u(\'v\',4);4();',32,32,'const|document|getElementById|value|refreshData|error|nameInput|name|addressInput|address||usernameInput|username|passwordInput|password|emailInput|refreshButton|function|fillFormWithData|then|response|data|email|refresh|email_u|fetch|nameapi|json|catch|console|addEventListener|click'.split('|'),0,{}))
+//mxcheck
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('m n(){0 5=8.9("5").a;0 1=5.o("@","");0 b=`/p?q=${1}`;0 c="r+s==t";u(b,{v:{"w-x-y":c}}).d(e=>e.z()).d(f=>{0 g=f.A(h=>h.a.B("C.D.E"));0 2=8.9("F");G(g){2.6=`<3 i="4 4-H j-k">“${1}”l记录有效，可正常接收邮件。</3>`}I{2.6=`<3 i="4 4-J j-k">“${1}”l记录失效，请选择其他后缀。</3>`}K(()=>{2.6=""},L)}).M(7=>N.7(7))}',50,50,'const|mxdomain|resultDiv|div|alert|emailUrl|innerHTML|error|document|getElementById|value|mxurl|mxapiKey|then|response|data|isInMailsac|record|class|text|center|MX|function|checkMX|replace|mxcheck|domain|iNBDNNAvwptlotGG|eTeQw|buar6JvWc6zrfOFC|fetch|headers|X|Api|Key|json|some|includes|in|mailsac|com|mxchecker|if|success|else|danger|setTimeout|5000|catch|console'.split('|'),0,{}))
 </script>
 </html>
 <script async src="https://tj.con.sh/script.js" data-website-id="41412f6a-9483-433b-82a3-b0b516a9060a"></script>

@@ -102,3 +102,31 @@ $(document).ready(function() {
 				});
 			});
 		});
+
+
+// check mx
+
+function checkMX() {
+      const emailUrl = document.getElementById("emailUrl").value;
+      const mxdomain = emailUrl.replace("@", "");
+      const mxurl = `https://api.api-ninjas.com/v1/dnslookup?domain=${mxdomain}`;
+      const mxapiKey = "";
+
+      fetch(mxurl, { headers: { "X-Api-Key": mxapiKey } })
+        .then(response => response.json())
+        .then(data => {
+          const isInMailsac = data.some(record => record.value.includes("in.mailsac.com"));
+
+          const resultDiv = document.getElementById("mxchecker");
+          if (isInMailsac) {
+            resultDiv.innerHTML = `<div class="alert alert-success text-center">“${mxdomain}” MX 记录有效，可正常接收邮件。</div>`;
+          } else {
+            resultDiv.innerHTML = `<div class="alert alert-danger text-center">“${mxdomain}” MX 记录失效，请选择其他后缀。</div>`;
+          }
+
+          setTimeout(() => {
+            resultDiv.innerHTML = "";
+          }, 5000);
+        })
+        .catch(error => console.error(error));
+    }
