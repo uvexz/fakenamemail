@@ -25,6 +25,7 @@
 		.breaking-news {text-decoration: none;border: 1px solid #ced4da;margin-bottom: 1em;}
 			.news{width: 100px;border-right: 1px solid #ced4da;}
 			.dot{height: 6px;width: 6px;margin-left: 3px;margin-right: 3px;margin-top: 2px !important;background-color: #6c757d;border-radius: 50%;display: inline-block}
+		@media (max-width: 767px){.fhide{display: none;}}
 	</style>
 </head>
 <body>
@@ -117,10 +118,8 @@
 								<optgroup label="namemail.app">
 									<option value="@mail.namemail.app">@mail.namemail.app</option>
 									<option value="@user.namemail.app">@user.namemail.app</option>
-									<option value="@com.namemail.app">@com.namemail.app</option>
-									<option value="@net.namemail.app">@net.namemail.app</option>
-									<option value="@edu.namemail.app">@edu.namemail.app</option>
-									<option value="@www.namemail.app">@www.namemail.app</option>
+									<option value="@dash.namemail.app">@dash.namemail.app</option>
+									<option value="@id.namemail.app">@id.namemail.app</option>
 								</optgroup>
 								<optgroup label="更多 More">
 									<option value="@mx.ll.td">@mx.ll.td</option>
@@ -138,7 +137,7 @@
 								</optgroup>
 			    			</select>
 			    			<div class="input-group-append">
-								<button class="btn btn-outline-secondary" type="button" onclick="checkMX()">Check MX</button>
+								<button class="btn btn-outline-secondary" type="button" onclick="checkMX()"><span class="fhide">Check </span>MX</button>
 							</div>
 						</div>	
 		    		</div>
