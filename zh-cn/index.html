@@ -10,6 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	<link rel="stylesheet" href="https://cdn.sevencdn.com/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.sevencdn.com/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<style>
 		* {border-radius: 0!important;font-family: "Noto Sans SC","Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Hiragino Kaku Gothic Pro",Meiryo,"Malgun Gothic",sans-serif;}
 		.btn-outline-secondary,.alert-light {border: 1px solid #ced4da;} .input-group {margin-bottom: 1rem;}
@@ -49,7 +50,7 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="name">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#name">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#name"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
@@ -58,7 +59,7 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="phone">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#phone">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#phone"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
@@ -69,7 +70,7 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="address">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#address">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#address"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
@@ -78,7 +79,7 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="postcode">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#postcode">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#postcode"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
@@ -89,7 +90,7 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="username">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#username">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#username"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
@@ -98,16 +99,19 @@
 		    		<div class="input-group">
 						<input type="text" class="form-control" id="password">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#password">📋</button>
+							<button class="btn btn-outline-secondary" type="button"  data-clipboard-target="#password"><i class="bi bi-clipboard-check"></i></button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 		    	<div class="col">
-					<div class="form-group">
-						<label for="email">邮箱前缀</label>
+		    		<label for="email">邮箱前缀</label>
+					<div class="input-group">
 						<input class="form-control" id="email" placeholder="请输入邮箱前缀">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"  onclick="copyToClipboard()"><i class="bi bi-clipboard-check"></i></button>
+						</div>
 		  			</div>
 		  		</div>
 		  		<div class="col">
@@ -144,10 +148,10 @@
 				</div>
 			</div>
 			<div id="mxchecker"></div>
-			<div class="btn-group btn-block" role="group">
-				<button type="button" class="btn btn-light" id="refresh">🔄 重新生成</button>
-				<button type="button" class="btn btn-secondary" onclick="copyToClipboard()">📋 复制邮箱</button>
-				<button type="button" class="btn btn-dark" onclick="getEmailContent()">📩 接收邮件</button>
+			<hr>
+			<div class="btn-group-vertical btn-block" role="group">
+				<button type="button" class="btn btn-light" id="refresh"><i class="bi bi-arrow-clockwise"></i> 重新生成 Regeneration</button>
+				<button type="button" class="btn btn-dark" onclick="getEmailContent()"><i class="bi bi-envelope-paper"></i> 接收邮件 Receive Email</button>
 			</div>
 		</form>
 
